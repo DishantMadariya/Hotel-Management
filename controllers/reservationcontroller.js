@@ -76,6 +76,12 @@ module.exports.deleteReservation = async (req, res) => {
         if (id) {
             let deletedata = await Reserv.findByIdAnDelete(id);
             if (deletedata) {
+                let listningdata = await Listning.findById(deletedata.listningId);
+                let index = listningdata.reservation.indexOf(deletedata.id);
+                if (index !== -1) {
+                    listningdata.reservation.splice(index, 1);
+                }  
+                await listningdata.save();
                 return res.status(201).json({ message: 'Booking successfully Canceled' });
             }
             return res.status(404).json({ message: "something wrong" });
