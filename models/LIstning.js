@@ -1,4 +1,4 @@
-// title, description, image, created, category,room count, bathroom count,guestcount, localtion,price, 
+
 const mongoose = require('mongoose');
 const ListningSchema = mongoose.Schema({
     userId: {
@@ -45,7 +45,7 @@ const ListningSchema = mongoose.Schema({
     },
     reservation: {
         type: Array,
-        required: true
+        required: false,
     },
     isActive: {
         type: Boolean,
@@ -60,5 +60,5 @@ const ListningSchema = mongoose.Schema({
         required: true
     },
 });
-const User = mongoose.model('Listning', ListningSchema);
-module.exports = User;
+const Listning = mongoose.model('Listning', ListningSchema);
+module.exports = Listning;
